@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getMovies } from './api'; // Assicurati che il percorso sia corretto
 import LoaderMovie from './LoaderMovie'; // Importa il componente LoaderMovie
 import { MovieType } from '../type/MovieType'; // Assicurati che il percorso sia corretto
