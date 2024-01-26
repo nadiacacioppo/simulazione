@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ErrorPage from './routes/error-page';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>Homepage</div>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "homepage/listmovies",
