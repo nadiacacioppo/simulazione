@@ -1,13 +1,13 @@
 import ReactDOM from 'react-dom/client'
-import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ErrorPage from './routes/error-page';
 import { ChakraProvider } from '@chakra-ui/react';
+import Homepage from './routes/homepage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Homepage</div>,
+    element: <Homepage />,
     errorElement: <ErrorPage />,
     children: [
       {
