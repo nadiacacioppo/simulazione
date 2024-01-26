@@ -1,26 +1,41 @@
-import { useState, useEffect } from 'react';
-import LoaderMovie from './LoaderMovie';
-import { getMovies } from './Api'; // Importa la funzione getMovies dal file api.tsx
+import React, { useState, useEffect } from 'react';
+import { getMovies } from './api'; // Assicurati che il percorso sia corretto
+import LoaderMovie from './LoaderMovie'; // Importa il componente LoaderMovie
+import { MovieType } from '../type/MovieType'; // Assicurati che il percorso sia corretto
 
-function MovieList() {
-    const [movies, setMovies] = useState([]); // Stato per memorizzare l'array di film
+const MovieList = () => {
+    const [movies, setMovies] = useState<MovieType[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const moviesData = await getMovies(); // Ottieni l'elenco dei film dall'API
-                setMovies(moviesData.Search); // Assumendo che l'API restituisca un oggetto con una proprietà "Search" che contiene l'array di film
+                const movieData = await getMovies();
+                if (movieData && movieData.Search) {
+                    setMovies(movieData.Search);
+                } else {
+                    console.error('Dati film non validi:', movieData);
+                }
+                setLoading(false);
             } catch (error) {
-                console.error('Errore durante il recupero dei film:', error);
+                console.error('Errore durante il recupero dell\'elenco dei film:', error);
+                setLoading(false);
             }
         };
 
         fetchMovies();
-    }, []); // Chiamato solo una volta all'avvio del componente
+    }, []);
 
     return (
-        <LoaderMovie movies={movies} />
+        <div>
+            <h1>Elenco dei Film</h1>
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                <LoaderMovie movies={movies} />
+            )}
+        </div>
     );
-}
+};
 
 export default MovieList;

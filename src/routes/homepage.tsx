@@ -6,7 +6,6 @@ export function Homepage () {
     return (
         <>
             <Header />
-            Questa è la homepage
             <Movies />
         
         </>

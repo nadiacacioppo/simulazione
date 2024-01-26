@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, GridItem } from "@chakra-ui/react";
-import CardMovie from "./CardMovie";
+import MovieCard from "./MovieCard";
 import { MovieType } from '../type/MovieType';
 
 interface LoaderMovieProps {
@@ -12,7 +12,7 @@ const LoaderMovie: React.FC<LoaderMovieProps> = ({ movies }) => {
         <Grid templateColumns='repeat(5, 1fr)' gap={5}>
             {movies.map((movie, index) => (
                 <GridItem key={index}>
-                    <CardMovie movie={movie} />
+                    <MovieCard movie={movie} />
                 </GridItem>
             ))}
         </Grid>
